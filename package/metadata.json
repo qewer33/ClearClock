@@ -1,0 +1,23 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "qewer33"
+            }
+        ],
+        "Name": "ClearClock",
+        "Id": "org.kde.plasma.clearclock",
+        "Description": "A clean and customizable date/time display for your desktop",
+        "Category": "Utilities",
+        "Icon": "org.kde.plasma.analogclock",
+        "EnabledByDefault": true,
+        "License": "LGPL-2.1+",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "1.0",
+        "Website": "https://plasma.kde.org/"
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml"
+}
