@@ -11,7 +11,7 @@
         "Category": "Utilities",
         "Icon": "org.kde.plasma.analogclock",
         "EnabledByDefault": true,
-        "License": "LGPL-2.1+",
+        "License": "GPL-3.0+",
         "ServiceTypes": [
             "Plasma/Applet"
         ],

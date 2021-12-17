@@ -1,6 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2021 qewer33
-    SPDX-License-Identifier: LGPL-2.1-or-later
+    SPDX-License-Identifier: GPL-3.0-or-later
 */
 
 import QtQuick 2.12
