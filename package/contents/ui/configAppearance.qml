@@ -67,6 +67,10 @@ Item {
         Component.onCompleted: {
             var arr = [] // use temp array to avoid constant binding stuff
             arr.push({
+                         "text": "ClearClock Default",
+                         "value": "ClearClock Default"
+                     })
+            arr.push({
                          "text": i18nc("Use default font", "Default"),
                          "value": ""
                      })
@@ -139,10 +143,8 @@ Item {
                 QtControls.ComboBox {
                     id: clockFontFamilyComboBox
                     QtLayouts.Layout.fillWidth: true
-                    // ComboBox's sizing is just utterly broken
                     QtLayouts.Layout.minimumWidth: units.gridUnit * 10
                     model: fontsModel
-                    // doesn't autodeduce from model because we manually populate it
                     textRole: "text"
 
                     onCurrentIndexChanged: {
@@ -239,10 +241,8 @@ Item {
                 QtControls.ComboBox {
                     id: dayFontFamilyComboBox
                     QtLayouts.Layout.fillWidth: true
-                    // ComboBox's sizing is just utterly broken
                     QtLayouts.Layout.minimumWidth: units.gridUnit * 10
                     model: fontsModel
-                    // doesn't autodeduce from model because we manually populate it
                     textRole: "text"
 
                     onCurrentIndexChanged: {
@@ -363,10 +363,8 @@ Item {
                 QtControls.ComboBox {
                     id: dateFontFamilyComboBox
                     QtLayouts.Layout.fillWidth: true
-                    // ComboBox's sizing is just utterly broken
                     QtLayouts.Layout.minimumWidth: units.gridUnit * 10
                     model: fontsModel
-                    // doesn't autodeduce from model because we manually populate it
                     textRole: "text"
 
                     onCurrentIndexChanged: {

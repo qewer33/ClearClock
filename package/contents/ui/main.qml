@@ -54,10 +54,10 @@ Item {
         spacing: -20
 
         TextMetrics {
-            id: textMetricsTimeLabel
-            font.family: timeLabel.font.family
-            font.pixelSize: timeLabel.font.pixelSize
-            font.bold: timeLabel.font.bold
+            id: textMetricsClockLabel
+            font.family: clockLabel.font.family
+            font.pixelSize: clockLabel.font.pixelSize
+            font.bold: clockLabel.font.bold
             text: " 99:99 "
         }
 
@@ -69,18 +69,18 @@ Item {
         }
 
         Item {
-            width: max(textMetricsTimeLabel.width, textMetricsDayLabel.width)
-            height: max(textMetricsTimeLabel.height, textMetricsDayLabel.height)
+            width: max(textMetricsClockLabel.width, textMetricsDayLabel.width)
+            height: max(textMetricsClockLabel.height, textMetricsDayLabel.height)
             Layout.alignment: Qt.AlignCenter
 
             PlasmaComponents.Label {
-                id: timeLabel
+                id: clockLabel
                 anchors.centerIn: parent
 
                 text: Qt.formatTime(currentDateTime).replace(":", ".")
 
                 color: plasmoid.configuration.clockFontColor
-                font.family: if (plasmoid.configuration.clockFontFamily === "") fontOutfitBold.name
+                font.family: if (plasmoid.configuration.clockFontFamily === "ClearClock Default") fontOutfitBold.name
                              else plasmoid.configuration.clockFontFamily
                 font.bold: plasmoid.configuration.clockBoldText
                 font.italic: plasmoid.configuration.clockItalicText
@@ -95,7 +95,7 @@ Item {
                 text: Qt.formatDate(currentDateTime, "dddd")
 
                 color: plasmoid.configuration.dayFontColor
-                font.family: if (plasmoid.configuration.dayFontFamily === "") fontSmooch.name
+                font.family: if (plasmoid.configuration.dayFontFamily === "ClearClock Default") fontSmooch.name
                              else plasmoid.configuration.dayFontFamily
                 font.bold: plasmoid.configuration.daykBoldText
                 font.italic: plasmoid.configuration.dayItalicText
@@ -108,10 +108,10 @@ Item {
             visible: plasmoid.configuration.showDateDisplay
             Layout.alignment: Qt.AlignCenter
 
-            text: Qt.formatDate(currentDateTime, plasmoid.configuration.customDateFormat)
+            text: Qt.formatDate(currentDateTime, plasmoid.configuration.dateCustomDateFormat)
 
             color: plasmoid.configuration.dateFontColor
-            font.family: if (plasmoid.configuration.dateFontFamily === "") fontOutfitRegular.name
+            font.family: if (plasmoid.configuration.dateFontFamily === "ClearClock Default") fontOutfitRegular.name
                          else plasmoid.configuration.dateFontFamily
             font.bold: plasmoid.configuration.dateBoldText
             font.italic: plasmoid.configuration.dateItalicText
