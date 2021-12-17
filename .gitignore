@@ -3,3 +3,7 @@ ClearClock.creator.user
 ClearClock.cxxflags
 ClearClock.cflags
 ClearClock.creator
+ClearClock.files
+ClearClock.config
+ClearClock.includes
+ClearClock.plasmoid

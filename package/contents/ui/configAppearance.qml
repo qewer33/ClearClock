@@ -136,6 +136,7 @@ Item {
                     id: clockFontColorDialog
                     title: "Select Background Color"
                     currentColor: cfg_clockFontColor
+                    showAlphaChannel: true
                     onAccepted: {
                         cfg_clockFontColor = clockFontColorDialog.color
                     }
@@ -234,6 +235,7 @@ Item {
                     id: dayFontColorDialog
                     title: "Select Background Color"
                     currentColor: cfg_dayFontColor
+                    showAlphaChannel: true
                     onAccepted: {
                         cfg_dayFontColor = dayFontColorDialog.color
                     }
@@ -356,6 +358,7 @@ Item {
                     id: dateFontColorDialog
                     title: "Select Background Color"
                     currentColor: cfg_dateFontColor
+                    showAlphaChannel: true
                     onAccepted: {
                         cfg_dateFontColor = dateFontColorDialog.color
                     }
