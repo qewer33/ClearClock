@@ -104,6 +104,8 @@ Item {
             QtControls.CheckBox {
                 id: use24hFormat
                 text: i18n("Use 24-hour clock")
+                tristate: false
+                checked: cfg_clockUse24hFormat
             }
 
             QtLayouts.RowLayout {
