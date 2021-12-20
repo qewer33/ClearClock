@@ -42,13 +42,6 @@ Item {
         source: "../fonts/Smooch-Regular.ttf"
     }
 
-    function max(a, b) {
-        if (a > b)
-            return a
-        else
-            return b
-    }
-
     Plasmoid.fullRepresentation: ColumnLayout {
         anchors.fill: parent
         spacing: -20
@@ -65,12 +58,13 @@ Item {
             id: textMetricsDayLabel
             font.family: dayLabel.font.family
             font.pixelSize: dayLabel.font.pixelSize
+            font.bold: dayLabel.font.bold
             text: " Wednesday "
         }
 
         Item {
-            width: max(textMetricsClockLabel.width, textMetricsDayLabel.width)
-            height: max(textMetricsClockLabel.height, textMetricsDayLabel.height)
+            width: Math.max(textMetricsClockLabel.width, textMetricsDayLabel.width)
+            height: Math.max(textMetricsClockLabel.height, textMetricsDayLabel.height)
             Layout.alignment: Qt.AlignCenter
 
             PlasmaComponents.Label {
@@ -80,7 +74,7 @@ Item {
                 text: Qt.formatTime(currentDateTime).replace(":", ".")
 
                 color: plasmoid.configuration.clockFontColor
-                font.family: if (plasmoid.configuration.clockFontFamily === "default") fontOutfitBold.name
+                font.family: if (plasmoid.configuration.clockFontFamily === "ccdefault") fontOutfitBold.name
                              else plasmoid.configuration.clockFontFamily
                 font.bold: plasmoid.configuration.clockBoldText
                 font.italic: plasmoid.configuration.clockItalicText
@@ -95,7 +89,7 @@ Item {
                 text: Qt.formatDate(currentDateTime, "dddd")
 
                 color: plasmoid.configuration.dayFontColor
-                font.family: if (plasmoid.configuration.dayFontFamily === "default") fontSmooch.name
+                font.family: if (plasmoid.configuration.dayFontFamily === "ccdefault") fontSmooch.name
                              else plasmoid.configuration.dayFontFamily
                 font.bold: plasmoid.configuration.daykBoldText
                 font.italic: plasmoid.configuration.dayItalicText
@@ -111,7 +105,7 @@ Item {
             text: Qt.formatDate(currentDateTime, plasmoid.configuration.dateCustomDateFormat)
 
             color: plasmoid.configuration.dateFontColor
-            font.family: if (plasmoid.configuration.dateFontFamily === "default") fontOutfitRegular.name
+            font.family: if (plasmoid.configuration.dateFontFamily === "ccdefault") fontOutfitRegular.name
                          else plasmoid.configuration.dateFontFamily
             font.bold: plasmoid.configuration.dateBoldText
             font.italic: plasmoid.configuration.dateItalicText

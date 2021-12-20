@@ -17,7 +17,7 @@
     </entry>
     <entry name="clockFontFamily" type="string">
       <label>Sets the clock font family.</label>
-      <default>ClearClock Default</default>
+      <default>ccdefault</default>
     </entry>
     <entry name="clockBoldText" type="Bool">
       <label>Sets the clock font to bold.</label>
@@ -42,7 +42,7 @@
     </entry>
     <entry name="dayFontFamily" type="string">
       <label>Sets the day font family.</label>
-      <default>ClearClock Default</default>
+      <default>ccdefault</default>
     </entry>
     <entry name="dayBoldText" type="Bool">
       <label>Sets the day font to bold.</label>
@@ -71,7 +71,7 @@
     </entry>
     <entry name="dateFontFamily" type="string">
       <label>Sets the date font family.</label>
-      <default>ClearClock Default</default>
+      <default>ccdefault</default>
     </entry>
     <entry name="dateBoldText" type="Bool">
       <label>Sets the date font to bold.</label>

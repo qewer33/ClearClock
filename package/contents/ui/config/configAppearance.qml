@@ -10,6 +10,8 @@ import QtQuick.Dialogs 1.2
 
 import org.kde.kirigami 2.3 as Kirigami
 
+import "../lib"
+
 Item {
     id: appearancePage
     width: childrenRect.width
@@ -18,7 +20,7 @@ Item {
     signal configurationChanged
 
     property alias cfg_clockUse24hFormat: use24hFormat.checkState
-    property string cfg_clockFontColor: clockFontColorRect.color
+    property string cfg_clockFontColor: clockFontColor.value
     property string cfg_clockFontFamily
     property alias cfg_clockBoldText: clockBoldCheckBox.checked
     property alias cfg_clockItalicText: clockItalicCheckBox.checked
@@ -38,6 +40,7 @@ Item {
     property alias cfg_dateBoldText: dateBoldCheckBox.checked
     property alias cfg_dateItalicText: dateItalicCheckBox.checked
     property alias cfg_dateFontSize: dateFontSizeSpinBox.value
+
 
     function fixFontFamilyChange(id, comboBox) {
         // HACK by the time we populate our model and/or the ComboBox is finished the value is still undefined
@@ -73,7 +76,7 @@ Item {
                      })
             arr.push({
                          "text": "ClearClock Default",
-                         "value": "default"
+                         "value": "ccdefault"
                      })
 
             var fonts = Qt.fontFamilies()
