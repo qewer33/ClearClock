@@ -80,7 +80,7 @@ Item {
                 text: Qt.formatTime(currentDateTime).replace(":", ".")
 
                 color: plasmoid.configuration.clockFontColor
-                font.family: if (plasmoid.configuration.clockFontFamily === "ClearClock Default") fontOutfitBold.name
+                font.family: if (plasmoid.configuration.clockFontFamily === "default") fontOutfitBold.name
                              else plasmoid.configuration.clockFontFamily
                 font.bold: plasmoid.configuration.clockBoldText
                 font.italic: plasmoid.configuration.clockItalicText
@@ -95,7 +95,7 @@ Item {
                 text: Qt.formatDate(currentDateTime, "dddd")
 
                 color: plasmoid.configuration.dayFontColor
-                font.family: if (plasmoid.configuration.dayFontFamily === "ClearClock Default") fontSmooch.name
+                font.family: if (plasmoid.configuration.dayFontFamily === "default") fontSmooch.name
                              else plasmoid.configuration.dayFontFamily
                 font.bold: plasmoid.configuration.daykBoldText
                 font.italic: plasmoid.configuration.dayItalicText
@@ -111,7 +111,7 @@ Item {
             text: Qt.formatDate(currentDateTime, plasmoid.configuration.dateCustomDateFormat)
 
             color: plasmoid.configuration.dateFontColor
-            font.family: if (plasmoid.configuration.dateFontFamily === "ClearClock Default") fontOutfitRegular.name
+            font.family: if (plasmoid.configuration.dateFontFamily === "default") fontOutfitRegular.name
                          else plasmoid.configuration.dateFontFamily
             font.bold: plasmoid.configuration.dateBoldText
             font.italic: plasmoid.configuration.dateItalicText

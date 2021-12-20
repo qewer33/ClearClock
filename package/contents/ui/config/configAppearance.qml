@@ -68,12 +68,12 @@ Item {
         Component.onCompleted: {
             var arr = [] // use temp array to avoid constant binding stuff
             arr.push({
-                         "text": "ClearClock Default",
-                         "value": "ClearClock Default"
-                     })
-            arr.push({
                          "text": i18nc("Use default font", "Default"),
                          "value": ""
+                     })
+            arr.push({
+                         "text": "ClearClock Default",
+                         "value": "default"
                      })
 
             var fonts = Qt.fontFamilies()
