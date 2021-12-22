@@ -7,3 +7,5 @@ ClearClock.files
 ClearClock.config
 ClearClock.includes
 ClearClock.plasmoid
+.kdev4
+ClearClock.kdev4
