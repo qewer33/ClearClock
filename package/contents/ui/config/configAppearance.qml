@@ -155,18 +155,14 @@ Item {
 
                 QtControls.Button {
                     id: clockBoldCheckBox
-                    // ToolTip.text: i18n("Bold text")
                     icon.name: "format-text-bold"
                     checkable: true
-                    // Accessible.name: ToolTip.text
                 }
 
                 QtControls.Button {
                     id: clockItalicCheckBox
-                    // ToolTip.text: i18n("Italic text")
                     icon.name: "format-text-italic"
                     checkable: true
-                    // Accessible.name: ToolTip.text
                 }
 
                 QtControls.SpinBox {
@@ -234,18 +230,14 @@ Item {
 
                 QtControls.Button {
                     id: dayBoldCheckBox
-                    // ToolTip.text: i18n("Bold text")
                     icon.name: "format-text-bold"
                     checkable: true
-                    // Accessible.name: ToolTip.text
                 }
 
                 QtControls.Button {
                     id: dayItalicCheckBox
-                    // ToolTip.text: i18n("Italic text")
                     icon.name: "format-text-italic"
                     checkable: true
-                    // Accessible.name: ToolTip.text
                 }
 
                 QtControls.SpinBox {
@@ -292,10 +284,8 @@ Item {
                     }
 
                     QtControls.Button {
-                        // ToolTip.text: i18n("Time format documentation")
                         icon.name: "exifinfo"
-                        // Accessible.name: ToolTip.text
-                        onClicked: Qt.openUrlExternally(link)
+                        onClicked: Qt.openUrlExternally("https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method")
                     }
                 }
             }
@@ -337,18 +327,14 @@ Item {
 
                 QtControls.Button {
                     id: dateBoldCheckBox
-                    // ToolTip.text: i18n("Bold text")
                     icon.name: "format-text-bold"
                     checkable: true
-                    // Accessible.name: ToolTip.text
                 }
 
                 QtControls.Button {
                     id: dateItalicCheckBox
-                    // ToolTip.text: i18n("Italic text")
                     icon.name: "format-text-italic"
                     checkable: true
-                    // Accessible.name: ToolTip.text
                 }
 
                 QtControls.SpinBox {

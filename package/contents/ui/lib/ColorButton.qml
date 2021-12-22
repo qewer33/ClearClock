@@ -28,7 +28,7 @@ QtControls.Button {
     ColorDialog {
         id: dialog
         title: "Select Background Color"
-        currentColor: value
+        color: value
         showAlphaChannel: true
         onAccepted: {
             value = dialog.color
