@@ -167,13 +167,11 @@ Item {
 
                 QtControls.SpinBox {
                     id: clockFontSizeSpinBox
-
+                    textFromValue: function(value, locale) {
+                                      return qsTr("%1px").arg(value);
+                                   }
                     from: 10
                     to: 350
-                }
-
-                QtControls.Label {
-                    text: "px"
                 }
             }
         }
@@ -242,15 +240,11 @@ Item {
 
                 QtControls.SpinBox {
                     id: dayFontSizeSpinBox
-
+                    textFromValue: function(value, locale) {
+                                      return qsTr("%1px").arg(value);
+                                   }
                     from: 10
                     to: 350
-                }
-
-                QtControls.Label {
-                    text: "px"
-                    opacity: if (enabled) 1
-                             else 0.4
                 }
             }
         }
@@ -339,15 +333,11 @@ Item {
 
                 QtControls.SpinBox {
                     id: dateFontSizeSpinBox
-
+                    textFromValue: function(value, locale) {
+                                      return qsTr("%1px").arg(value);
+                                   }
                     from: 10
                     to: 350
-                }
-
-                QtControls.Label {
-                    text: "px"
-                    opacity: if (enabled) 1
-                             else 0.4
                 }
             }
         }

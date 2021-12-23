@@ -47,23 +47,21 @@ QtLayouts.RowLayout {
 
     QtControls.Button {
         id: clockBoldCheckBox
-        // ToolTip.text: i18n("Bold text")
         icon.name: "format-text-bold"
         checkable: true
-        // Accessible.name: ToolTip.text
     }
 
     QtControls.Button {
         id: clockItalicCheckBox
-        // ToolTip.text: i18n("Italic text")
         icon.name: "format-text-italic"
         checkable: true
-        // Accessible.name: ToolTip.text
     }
 
     QtControls.SpinBox {
         id: clockFontSizeSpinBox
-
+        textFromValue: function(value, locale) {
+                          return qsTr("%1px").arg(value);
+                       }
         from: 10
         to: 350
     }
