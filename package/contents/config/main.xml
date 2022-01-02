@@ -6,6 +6,7 @@
 <kcfgfile name=""/>
 
   <group name="Appearance">
+
       <!-- Clock Display Settings -->
     <entry name="clockUse24hFormat" type="Bool">
       <label>Force the clock to use 12/24 hour time, instead of following the user locale.</label>
@@ -16,7 +17,7 @@
       <default>.</default>
     </entry>
     <entry name="clockFontColor" type="Color">
-      <label>Color of text</label>
+      <label>Color of text.</label>
       <default>#ffffff</default>
     </entry>
     <entry name="clockFontFamily" type="string">
@@ -35,6 +36,27 @@
       <label>Sets the size of the day font in pixels.</label>
       <default>220</default>
     </entry>
+    <entry name="clockShadowEnabled" type="Bool">
+      <label>Whether the drop shadow should be shown behind the clock label.</label>
+      <default>false</default>
+    </entry>
+    <entry name="clockShadowColor" type="Color">
+      <label>Color of shadow.</label>
+      <default>#80000000</default>
+    </entry>
+    <entry name="clockShadowRadius" type="int">
+      <label>Sets the radius of the shadow.</label>
+      <default>10</default>
+    </entry>
+    <entry name="clockShadowXOffset" type="int">
+      <label>Sets the x offset of the shadow.</label>
+      <default>0</default>
+    </entry>
+    <entry name="clockShadowYOffset" type="int">
+      <label>Sets the y offset of the shadow.</label>
+      <default>0</default>
+    </entry>
+
     <!-- Day Display Settings -->
     <entry name="showDayDisplay" type="Bool">
       <label>Whether the day should be shown in the clock.</label>
@@ -60,6 +82,27 @@
       <label>Sets the size of the day font in pixels.</label>
       <default>100</default>
     </entry>
+    <entry name="dayShadowEnabled" type="Bool">
+      <label>Whether the drop shadow should be shown behind the clock label.</label>
+      <default>false</default>
+    </entry>
+    <entry name="dayShadowColor" type="Color">
+      <label>Color of shadow.</label>
+      <default>#80000000</default>
+    </entry>
+    <entry name="dayShadowRadius" type="int">
+      <label>Sets the radius of the shadow.</label>
+      <default>10</default>
+    </entry>
+    <entry name="dayShadowXOffset" type="int">
+      <label>Sets the x offset of the shadow.</label>
+      <default>0</default>
+    </entry>
+    <entry name="dayShadowYOffset" type="int">
+      <label>Sets the y offset of the shadow.</label>
+      <default>0</default>
+    </entry>
+
     <!-- Date Display Settings -->
     <entry name="showDateDisplay" type="Bool">
       <label>Whether the date should be shown below the clock.</label>
@@ -93,5 +136,26 @@
       <label>Sets the letter spacing of the date font.</label>
       <default>2</default>
     </entry>
+    <entry name="dateShadowEnabled" type="Bool">
+      <label>Whether the drop shadow should be shown behind the clock label.</label>
+      <default>false</default>
+    </entry>
+    <entry name="dateShadowColor" type="Color">
+      <label>Color of shadow.</label>
+      <default>#80000000</default>
+    </entry>
+    <entry name="dateShadowRadius" type="int">
+      <label>Sets the radius of the shadow.</label>
+      <default>10</default>
+    </entry>
+    <entry name="dateShadowXOffset" type="int">
+      <label>Sets the x offset of the shadow.</label>
+      <default>0</default>
+    </entry>
+    <entry name="dateShadowYOffset" type="int">
+      <label>Sets the y offset of the shadow.</label>
+      <default>0</default>
+    </entry>
+
   </group>
 </kcfg>

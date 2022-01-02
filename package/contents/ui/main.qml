@@ -5,6 +5,7 @@
 
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
@@ -67,7 +68,7 @@ Item {
             height: Math.max(textMetricsClockLabel.height, textMetricsDayLabel.height)
             Layout.alignment: Qt.AlignCenter
 
-            PlasmaComponents.Label {
+            Text {
                 id: clockLabel
                 anchors.centerIn: parent
 
@@ -80,9 +81,18 @@ Item {
                 font.bold: plasmoid.configuration.clockBoldText
                 font.italic: plasmoid.configuration.clockItalicText
                 font.pixelSize: plasmoid.configuration.clockFontSize
+
+                layer.enabled: plasmoid.configuration.clockShadowEnabled
+                layer.effect: DropShadow {
+                    color: plasmoid.configuration.clockShadowColor
+                    radius: plasmoid.configuration.clockShadowRadius
+                    horizontalOffset: plasmoid.configuration.clockShadowXOffset
+                    verticalOffset: plasmoid.configuration.clockShadowYOffset
+                    samples: 10
+                }
             }
 
-            PlasmaComponents.Label {
+            Text {
                 id: dayLabel
                 visible: plasmoid.configuration.showDayDisplay
                 anchors.centerIn: parent
@@ -95,10 +105,19 @@ Item {
                 font.bold: plasmoid.configuration.daykBoldText
                 font.italic: plasmoid.configuration.dayItalicText
                 font.pixelSize: plasmoid.configuration.dayFontSize
+
+                layer.enabled: plasmoid.configuration.dayShadowEnabled
+                layer.effect: DropShadow {
+                    color: plasmoid.configuration.dayShadowColor
+                    radius: plasmoid.configuration.dayShadowRadius
+                    horizontalOffset: plasmoid.configuration.dayShadowXOffset
+                    verticalOffset: plasmoid.configuration.dayShadowYOffset
+                    samples: 10
+                }
             }
         }
 
-        PlasmaComponents.Label {
+        Text {
             id: dateLabel
             visible: plasmoid.configuration.showDateDisplay
             Layout.alignment: Qt.AlignCenter
@@ -113,6 +132,15 @@ Item {
             font.pixelSize: plasmoid.configuration.dateFontSize
             font.capitalization: Font.AllUppercase
             font.letterSpacing: plasmoid.configuration.dateLetterSpacing
+
+            layer.enabled: plasmoid.configuration.dateShadowEnabled
+            layer.effect: DropShadow {
+                color: plasmoid.configuration.dateShadowColor
+                radius: plasmoid.configuration.dateShadowRadius
+                horizontalOffset: plasmoid.configuration.dateShadowXOffset
+                verticalOffset: plasmoid.configuration.dateShadowYOffset
+                samples: 10
+            }
         }
     }
 }
