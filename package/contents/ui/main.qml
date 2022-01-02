@@ -71,8 +71,8 @@ Item {
                 id: clockLabel
                 anchors.centerIn: parent
 
-                text: if (plasmoid.configuration.clockUse24hFormat) Qt.formatTime(currentDateTime, "hh.mm")
-                      else Qt.formatTime(currentDateTime, "hh.mm AP")
+                text: if (plasmoid.configuration.clockUse24hFormat) Qt.formatTime(currentDateTime, "hh.mm").replace(".", plasmoid.configuration.clockSeparator)
+                      else Qt.formatTime(currentDateTime, "hh.mm AP").replace(".", plasmoid.configuration.clockSeparator)
 
                 color: plasmoid.configuration.clockFontColor
                 font.family: if (plasmoid.configuration.clockFontFamily === "ccdefault") fontOutfitBold.name

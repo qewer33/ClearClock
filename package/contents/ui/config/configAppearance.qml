@@ -20,6 +20,7 @@ Item {
     signal configurationChanged
 
     property alias cfg_clockUse24hFormat: use24hFormat.checkState
+    property alias cfg_clockSeparator: clockSeparatorTextField.text
     property string cfg_clockFontColor
     property string cfg_clockFontFamily
     property bool cfg_clockBoldText
@@ -106,6 +107,17 @@ Item {
                 text: i18n("Use 24-hour clock")
                 tristate: false
                 checked: cfg_clockUse24hFormat
+            }
+
+            QtLayouts.RowLayout {
+                QtControls.Label {
+                    text: i18n("Separator:")
+                }
+
+                QtControls.TextField {
+                    id: clockSeparatorTextField
+                    maximumLength: 1
+                }
             }
 
             FontConfig {

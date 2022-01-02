@@ -11,6 +11,10 @@
       <label>Force the clock to use 12/24 hour time, instead of following the user locale.</label>
       <default>true</default>
     </entry>
+    <entry name="clockSeparator" type="string">
+      <label>Sets the clock separator.</label>
+      <default>.</default>
+    </entry>
     <entry name="clockFontColor" type="Color">
       <label>Color of text</label>
       <default>#ffffff</default>
