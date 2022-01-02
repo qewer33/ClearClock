@@ -88,7 +88,7 @@ Item {
                     radius: plasmoid.configuration.clockShadowRadius
                     horizontalOffset: plasmoid.configuration.clockShadowXOffset
                     verticalOffset: plasmoid.configuration.clockShadowYOffset
-                    samples: 10
+                    samples: plasmoid.configuration.clockShadowRadius*2
                 }
             }
 
@@ -112,7 +112,7 @@ Item {
                     radius: plasmoid.configuration.dayShadowRadius
                     horizontalOffset: plasmoid.configuration.dayShadowXOffset
                     verticalOffset: plasmoid.configuration.dayShadowYOffset
-                    samples: 10
+                    samples: plasmoid.configuration.dayShadowYOffset*2
                 }
             }
         }
@@ -139,7 +139,7 @@ Item {
                 radius: plasmoid.configuration.dateShadowRadius
                 horizontalOffset: plasmoid.configuration.dateShadowXOffset
                 verticalOffset: plasmoid.configuration.dateShadowYOffset
-                samples: 10
+                samples: plasmoid.configuration.dateShadowYOffset*2
             }
         }
     }
