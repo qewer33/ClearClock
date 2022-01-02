@@ -15,8 +15,8 @@
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "1.0",
-        "Website": "https://plasma.kde.org/"
+        "Version": "0.2",
+        "Website": "https://github.com/qewer33/ClearClock"
     },
     "X-Plasma-API": "declarativeappletscript",
     "X-Plasma-MainScript": "ui/main.qml"
