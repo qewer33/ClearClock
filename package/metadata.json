@@ -15,7 +15,7 @@
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "0.2",
+        "Version": "0.3",
         "Website": "https://github.com/qewer33/ClearClock"
     },
     "X-Plasma-API": "declarativeappletscript",
