@@ -20,26 +20,26 @@ Item {
     signal configurationChanged
 
     property alias cfg_clockUse24hFormat: use24hFormat.checkState
-    property string cfg_clockFontColor: clockFontColorButton.value
+    property string cfg_clockFontColor
     property string cfg_clockFontFamily
-    property alias cfg_clockBoldText: clockBoldCheckBox.checked
-    property alias cfg_clockItalicText: clockItalicCheckBox.checked
-    property alias cfg_clockFontSize: clockFontSizeSpinBox.value
+    property bool cfg_clockBoldText
+    property bool cfg_clockItalicText
+    property int cfg_clockFontSize
 
     property alias cfg_showDayDisplay: showDayDisplayCheckBox.checked
-    property string cfg_dayFontColor: dayFontColorRect.color
+    property string cfg_dayFontColor
     property string cfg_dayFontFamily
-    property alias cfg_dayBoldText: dayBoldCheckBox.checked
-    property alias cfg_dayItalicText: dayItalicCheckBox.checked
-    property alias cfg_dayFontSize: dayFontSizeSpinBox.value
+    property bool cfg_dayBoldText
+    property bool cfg_dayItalicText
+    property int cfg_dayFontSize
 
     property alias cfg_showDateDisplay: showDateDisplayCheckBox.checked
     property alias cfg_dateCustomDateFormat: customDateFormat.text
-    property string cfg_dateFontColor: dateFontColorRect.color
+    property string cfg_dateFontColor
     property string cfg_dateFontFamily
-    property alias cfg_dateBoldText: dateBoldCheckBox.checked
-    property alias cfg_dateItalicText: dateItalicCheckBox.checked
-    property alias cfg_dateFontSize: dateFontSizeSpinBox.value
+    property bool cfg_dateBoldText
+    property bool cfg_dateItalicText
+    property int cfg_dateFontSize
 
 
     function fixFontFamilyChange(id, comboBox) {
@@ -108,70 +108,32 @@ Item {
                 checked: cfg_clockUse24hFormat
             }
 
-            QtLayouts.RowLayout {
+            FontConfig {
+                fontModel: fontsModel
 
-                QtControls.Label {
-                    text: i18n("Font style:")
+                colorValue: cfg_clockFontColor
+                onColorValueChanged: {
+                    cfg_clockFontColor = colorValue
                 }
 
-                ColorButton {
-                    id: clockFontColorButton
-                    value: cfg_clockFontColor
-
-                    onValueChanged: {
-                        cfg_clockFontColor = value
-                    }
+                fontValue: cgf_clockFontFamily
+                onFontValueChanged: {
+                    cfg_clockFontFamily = fontValue
                 }
 
-                QtControls.ComboBox {
-                    id: clockFontFamilyComboBox
-                    QtLayouts.Layout.fillWidth: true
-                    QtLayouts.Layout.minimumWidth: units.gridUnit * 10
-                    model: fontsModel
-                    textRole: "text"
-
-                    function loadComboBoxValue() {
-                        if (cgf_clockFontFamily === "ccdefault") {
-                            return 0
-                        } else {
-                            for (i = 0; i < fontsModel.count; i++) {
-                                if (cgf_clockFontFamily === fontsModel.get(i).value) {
-                                    return i + 1
-                                }
-                            }
-                        }
-                    }
-
-                    currentIndex: loadComboBoxValue()
-
-                    onCurrentIndexChanged: {
-                        var current = model.get(currentIndex)
-                        if (current) {
-                            cfg_clockFontFamily = current.value
-                            appearancePage.configurationChanged()
-                        }
-                    }
+                boldValue: cfg_clockBoldText
+                onBoldValueChanged: {
+                    cfg_clockBoldText = boldValue
                 }
 
-                QtControls.Button {
-                    id: clockBoldCheckBox
-                    icon.name: "format-text-bold"
-                    checkable: true
+                italicValue: cfg_clockItalicText
+                onItalicValueChanged: {
+                    cfg_clockItalicText = italicValue
                 }
 
-                QtControls.Button {
-                    id: clockItalicCheckBox
-                    icon.name: "format-text-italic"
-                    checkable: true
-                }
-
-                QtControls.SpinBox {
-                    id: clockFontSizeSpinBox
-                    textFromValue: function(value, locale) {
-                                      return qsTr("%1px").arg(value);
-                                   }
-                    from: 10
-                    to: 350
+                pxSizeValue: cfg_clockFontSize
+                onPxSizeValueChanged: {
+                    cfg_clockFontSize = pxSizeValue
                 }
             }
         }
@@ -191,60 +153,33 @@ Item {
                 text: i18n("Show day display")
             }
 
-            QtLayouts.RowLayout {
-                QtLayouts.Layout.fillWidth: true
+            FontConfig {
+                fontModel: fontsModel
                 enabled: showDayDisplayCheckBox.checked
 
-                QtControls.Label {
-                    text: i18n("Font style:")
-                    opacity: if (enabled) 1
-                             else 0.4
+                colorValue: cfg_dayFontColor
+                onColorValueChanged: {
+                    cfg_dayFontColor = colorValue
                 }
 
-                ColorButton {
-                    id: dayFontColorButton
-                    value: cfg_dayFontColor
-
-                    onValueChanged: {
-                        cfg_dayFontColor = value
-                    }
+                fontValue: cgf_dayFontFamily
+                onFontValueChanged: {
+                    cfg_dayFontFamily = fontValue
                 }
 
-                QtControls.ComboBox {
-                    id: dayFontFamilyComboBox
-                    QtLayouts.Layout.fillWidth: true
-                    QtLayouts.Layout.minimumWidth: units.gridUnit * 10
-                    model: fontsModel
-                    textRole: "text"
-
-                    onCurrentIndexChanged: {
-                        var current = model.get(currentIndex)
-                        if (current) {
-                            cfg_dayFontFamily = current.value
-                            appearancePage.configurationChanged()
-                        }
-                    }
+                boldValue: cfg_dayBoldText
+                onBoldValueChanged: {
+                    cfg_dayBoldText = boldValue
                 }
 
-                QtControls.Button {
-                    id: dayBoldCheckBox
-                    icon.name: "format-text-bold"
-                    checkable: true
+                italicValue: cfg_dayItalicText
+                onItalicValueChanged: {
+                    cfg_dayItalicText = italicValue
                 }
 
-                QtControls.Button {
-                    id: dayItalicCheckBox
-                    icon.name: "format-text-italic"
-                    checkable: true
-                }
-
-                QtControls.SpinBox {
-                    id: dayFontSizeSpinBox
-                    textFromValue: function(value, locale) {
-                                      return qsTr("%1px").arg(value);
-                                   }
-                    from: 10
-                    to: 350
+                pxSizeValue: cfg_dayFontSize
+                onPxSizeValueChanged: {
+                    cfg_dayFontSize = pxSizeValue
                 }
             }
         }
@@ -269,6 +204,8 @@ Item {
 
                 QtControls.Label {
                     text: i18n("Date format:")
+                    opacity: if (enabled) 1
+                             else 0.4
                 }
 
                 QtLayouts.RowLayout {
@@ -284,60 +221,33 @@ Item {
                 }
             }
 
-            QtLayouts.RowLayout {
-                QtLayouts.Layout.fillWidth: true
+            FontConfig {
+                fontModel: fontsModel
                 enabled: showDateDisplayCheckBox.checked
 
-                QtControls.Label {
-                    text: i18n("Font style:")
-                    opacity: if (enabled) 1
-                             else 0.4
+                colorValue: cfg_dateFontColor
+                onColorValueChanged: {
+                    cfg_dateFontColor = colorValue
                 }
 
-                ColorButton {
-                    id: dateFontColorButton
-                    value: cfg_dateFontColor
-
-                    onValueChanged: {
-                        cfg_dateFontColor = value
-                    }
+                fontValue: cgf_dateFontFamily
+                onFontValueChanged: {
+                    cfg_dateFontFamily = fontValue
                 }
 
-                QtControls.ComboBox {
-                    id: dateFontFamilyComboBox
-                    QtLayouts.Layout.fillWidth: true
-                    QtLayouts.Layout.minimumWidth: units.gridUnit * 10
-                    model: fontsModel
-                    textRole: "text"
-
-                    onCurrentIndexChanged: {
-                        var current = model.get(currentIndex)
-                        if (current) {
-                            cfg_dateFontFamily = current.value
-                            appearancePage.configurationChanged()
-                        }
-                    }
+                boldValue: cfg_dateBoldText
+                onBoldValueChanged: {
+                    cfg_dateBoldText = boldValue
                 }
 
-                QtControls.Button {
-                    id: dateBoldCheckBox
-                    icon.name: "format-text-bold"
-                    checkable: true
+                italicValue: cfg_dateItalicText
+                onItalicValueChanged: {
+                    cfg_dateItalicText = italicValue
                 }
 
-                QtControls.Button {
-                    id: dateItalicCheckBox
-                    icon.name: "format-text-italic"
-                    checkable: true
-                }
-
-                QtControls.SpinBox {
-                    id: dateFontSizeSpinBox
-                    textFromValue: function(value, locale) {
-                                      return qsTr("%1px").arg(value);
-                                   }
-                    from: 10
-                    to: 350
+                pxSizeValue: cfg_dateFontSize
+                onPxSizeValueChanged: {
+                    cfg_dateFontSize = pxSizeValue
                 }
             }
         }

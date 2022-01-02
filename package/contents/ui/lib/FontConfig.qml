@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12 as QtControls
 import QtQuick.Layouts 1.15 as QtLayouts
 import QtQuick.Dialogs 1.2
 
-import "ColorButton.qml"
+import "."
 
 QtLayouts.RowLayout {
 
@@ -18,10 +18,12 @@ QtLayouts.RowLayout {
 
     QtControls.Label {
         text: i18n("Font style:")
+        opacity: if (enabled) 1
+                 else 0.4
     }
 
     ColorButton {
-        id: dayFontColorButton
+        id: fontColorButton
         value: colorValue
 
         onValueChanged: {
@@ -30,43 +32,58 @@ QtLayouts.RowLayout {
     }
 
     QtControls.ComboBox {
-        id: clockFontFamilyComboBox
+        id: fontFamilyComboBox
         QtLayouts.Layout.fillWidth: true
         QtLayouts.Layout.minimumWidth: units.gridUnit * 10
         model: fontModel
         textRole: "text"
+        currentIndex: fontValue
 
         onCurrentIndexChanged: {
             var current = model.get(currentIndex)
             if (current) {
                 fontValue = current.value
-                appearancePage.configurationChanged()
+                // appearancePage.configurationChanged()
             }
         }
     }
 
     QtControls.Button {
-        id: clockBoldCheckBox
+        id: boldCheckBox
         icon.name: "format-text-bold"
         checkable: true
+        checked: boldValue
+
+        onStateChanged: {
+            boldValue = checked
+        }
     }
 
     QtControls.Button {
-        id: clockItalicCheckBox
+        id: italicCheckBox
         icon.name: "format-text-italic"
         checkable: true
+        checked: italicValue
+
+        onStateChanged: {
+            italicvalue = checked
+        }
     }
 
     QtControls.SpinBox {
-        id: clockFontSizeSpinBox
-        textFromValue: function(value, locale) {
-                          return qsTr("%1px").arg(value);
-                       }
+        id: fontSizeSpinBox
         from: 10
         to: 350
+        value: pxSizeValue
+
+        onValueChanged: {
+            pxSizeValue = value
+        }
     }
 
     QtControls.Label {
-        text: "px"
+        text: i18n("px")
+        opacity: if (enabled) 1
+                 else 0.4
     }
 }
