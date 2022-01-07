@@ -9,7 +9,7 @@ get_project_id() {
 }
 
 PROJECT_ID=$(get_project_id)
-INSTALL_LOCATION="/home/${USER}/.local/share/plasma/plasmoids/"
+INSTALL_LOCATION="${HOME}/.local/share/plasma/plasmoids/"
 
 echo "Installing ${PROJECT_ID}"
 
