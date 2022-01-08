@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2021 qewer33
+    SPDX-FileCopyrightText: 2022 qewer33
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 

@@ -1,3 +1,8 @@
+/*
+    SPDX-FileCopyrightText: 2022 qewer33
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
 import QtQuick 2.4
 import QtQuick.Controls 2.12 as QtControls
 import QtQuick.Layouts 1.15 as QtLayouts
