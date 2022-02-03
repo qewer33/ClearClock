@@ -24,8 +24,8 @@ Item {
         id: dataSource
         engine: "time"
         connectedSources: ["Local"]
-        interval: 60000
-        intervalAlignment: PlasmaCore.Types.AlignToMinute
+        interval: plasmoid.configuration.clockShowSeconds ? 1000 : 60000
+        intervalAlignment: plasmoid.configuration.clockShowSeconds ? PlasmaCore.Types.NoAlignment : PlasmaCore.Types.AlignToMinute
     }
 
     FontLoader {
@@ -52,7 +52,8 @@ Item {
             font.family: clockLabel.font.family
             font.pixelSize: clockLabel.font.pixelSize
             font.bold: clockLabel.font.bold
-            text: " 99:99 "
+            text: if (!plasmoid.configuration.clockShowSeconds) " 99:99 "
+                  else " 99:99:99 "
         }
 
         TextMetrics {
@@ -72,8 +73,15 @@ Item {
                 id: clockLabel
                 anchors.centerIn: parent
 
-                text: if (plasmoid.configuration.clockUse24hFormat) Qt.formatTime(currentDateTime, "hh.mm").replace(".", plasmoid.configuration.clockSeparator)
-                      else Qt.formatTime(currentDateTime, "hh.mm AP").replace(".", plasmoid.configuration.clockSeparator)
+                property var textFormat: {
+                    var AMPM = plasmoid.configuration.clockUse24hFormat ? "" : " AP"
+                    if (plasmoid.configuration.clockShowSeconds)
+                        return Qt.formatTime(currentDateTime, "hh.mm.ss" + AMPM).replace(".", plasmoid.configuration.clockSeparator)
+                    else
+                        return Qt.formatTime(currentDateTime, "hh.mm" + AMPM).replace(".", plasmoid.configuration.clockSeparator)
+                }
+
+                text: textFormat
 
                 color: plasmoid.configuration.clockFontColor
                 font.family: if (plasmoid.configuration.clockFontFamily === "ccdefault") fontOutfitBold.name

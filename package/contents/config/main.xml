@@ -9,8 +9,12 @@
 
       <!-- Clock Display Settings -->
     <entry name="clockUse24hFormat" type="Bool">
-      <label>Force the clock to use 12/24 hour time, instead of following the user locale.</label>
+      <label>Forces the clock to use 12/24 hour time, instead of following the user locale.</label>
       <default>true</default>
+    </entry>
+    <entry name="clockShowSeconds" type="Bool">
+      <label>Makes the clock show seconds after minutes.</label>
+      <default>false</default>
     </entry>
     <entry name="clockSeparator" type="string">
       <label>Sets the clock separator.</label>
