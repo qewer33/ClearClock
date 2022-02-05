@@ -20,6 +20,7 @@ Item {
     signal configurationChanged
 
     property alias cfg_clockUse24hFormat: use24hFormat.checkState
+    property alias cfg_clockShowSeconds: showSeconds.checkState
     property alias cfg_clockSeparator: clockSeparatorTextField.text
     property string cfg_clockFontColor
     property string cfg_clockFontFamily
@@ -126,6 +127,13 @@ Item {
                     text: i18n("Use 24-hour clock")
                     tristate: false
                     checked: cfg_clockUse24hFormat
+                }
+
+                QtControls.CheckBox {
+                    id: showSeconds
+                    text: i18n("Show seconds")
+                    tristate: false
+                    checked: cfg_clockShowSeconds
                 }
 
                 QtLayouts.RowLayout {
