@@ -5,27 +5,28 @@
 
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
-import QtGraphicalEffects 1.12
+import Qt5Compat.GraphicalEffects
+import org.kde.plasma.plasma5support as Plasma5Support
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-Item {
+PlasmoidItem {
     id: root
 
-    Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
+    preferredRepresentation: fullRepresentation
     Plasmoid.backgroundHints: PlasmaCore.Types.ConfigurableBackground
 
     readonly property date currentDateTime: dataSource.data.Local ? dataSource.data.Local.DateTime : new Date()
 
-    PlasmaCore.DataSource {
+    Plasma5Support.DataSource {
         id: dataSource
         engine: "time"
         connectedSources: ["Local"]
         interval: plasmoid.configuration.clockShowSeconds ? 1000 : 60000
-        intervalAlignment: plasmoid.configuration.clockShowSeconds ? PlasmaCore.Types.NoAlignment : PlasmaCore.Types.AlignToMinute
+        intervalAlignment: plasmoid.configuration.clockShowSeconds ? Plasma5Support.Types.NoAlignment : Plasma5Support.Types.AlignToMinute
     }
 
     FontLoader {
@@ -43,7 +44,7 @@ Item {
         source: "../fonts/Smooch-Regular.ttf"
     }
 
-    Plasmoid.fullRepresentation: ColumnLayout {
+    fullRepresentation: ColumnLayout {
         anchors.fill: parent
         spacing: -20
 
@@ -73,7 +74,7 @@ Item {
                 id: clockLabel
                 anchors.centerIn: parent
 
-                property var textFormat: {
+                property var getTextFormat: {
                     var AMPM = plasmoid.configuration.clockUse24hFormat ? "" : " AP"
                     if (plasmoid.configuration.clockShowSeconds)
                         return Qt.formatTime(currentDateTime, "hh.mm.ss" + AMPM).split(".").join(plasmoid.configuration.clockSeparator)
@@ -81,7 +82,7 @@ Item {
                         return Qt.formatTime(currentDateTime, "hh.mm" + AMPM).split(".").join(plasmoid.configuration.clockSeparator)
                 }
 
-                text: textFormat
+                text: getTextFormat
 
                 color: plasmoid.configuration.clockFontColor
                 font.family: if (plasmoid.configuration.clockFontFamily === "ccdefault") fontOutfitBold.name
@@ -110,7 +111,7 @@ Item {
                 color: plasmoid.configuration.dayFontColor
                 font.family: if (plasmoid.configuration.dayFontFamily === "ccdefault") fontSmooch.name
                              else plasmoid.configuration.dayFontFamily
-                font.bold: plasmoid.configuration.daykBoldText
+                font.bold: plasmoid.configuration.dayBoldText
                 font.italic: plasmoid.configuration.dayItalicText
                 font.pixelSize: plasmoid.configuration.dayFontSize
 

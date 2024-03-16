@@ -6,7 +6,9 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.12 as QtControls
 import QtQuick.Layouts 1.12 as QtLayouts
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs
+
+import org.kde.kirigami 2.3 as Kirigami
 
 import "."
 
@@ -39,7 +41,7 @@ QtLayouts.RowLayout {
     QtControls.ComboBox {
         id: fontFamilyComboBox
         QtLayouts.Layout.fillWidth: true
-        QtLayouts.Layout.minimumWidth: units.gridUnit * 10
+        QtLayouts.Layout.minimumWidth: Kirigami.Units.gridUnit * 10
         model: fontModel
         textRole: "text"
         currentIndex: fontValue

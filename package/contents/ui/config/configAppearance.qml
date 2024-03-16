@@ -6,7 +6,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12 as QtControls
 import QtQuick.Layouts 1.12 as QtLayouts
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs
 
 import org.kde.kirigami 2.3 as Kirigami
 
@@ -155,7 +155,7 @@ Item {
                         cfg_clockFontColor = colorValue
                     }
 
-                    fontValue: cgf_clockFontFamily
+                    fontValue: cfg_clockFontFamily
                     onFontValueChanged: {
                         cfg_clockFontFamily = fontValue
                     }
@@ -232,7 +232,7 @@ Item {
                         cfg_dayFontColor = colorValue
                     }
 
-                    fontValue: cgf_dayFontFamily
+                    fontValue: cfg_dayFontFamily
                     onFontValueChanged: {
                         cfg_dayFontFamily = fontValue
                     }
@@ -331,7 +331,7 @@ Item {
                         cfg_dateFontColor = colorValue
                     }
 
-                    fontValue: cgf_dateFontFamily
+                    fontValue: cfg_dateFontFamily
                     onFontValueChanged: {
                         cfg_dateFontFamily = fontValue
                     }
