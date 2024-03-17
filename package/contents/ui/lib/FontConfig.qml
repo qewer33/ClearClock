@@ -44,7 +44,16 @@ QtLayouts.RowLayout {
         QtLayouts.Layout.minimumWidth: Kirigami.Units.gridUnit * 10
         model: fontModel
         textRole: "text"
-        currentIndex: fontValue
+        currentIndex: getIdFromModel()
+
+        function getIdFromModel(){
+            for(var i = 0; i < model.count; i++){
+                if(model.get(i).value === fontValue){
+                    return i;
+                }
+            }
+            return 0;
+        }
 
         onCurrentIndexChanged: {
             var current = model.get(currentIndex)

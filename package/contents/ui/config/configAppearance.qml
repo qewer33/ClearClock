@@ -58,31 +58,6 @@ Item {
     property int cfg_dateShadowXOffset
     property int cfg_dateShadowYOffset
 
-
-    function fixFontFamilyChange(id, comboBox) {
-        // HACK by the time we populate our model and/or the ComboBox is finished the value is still undefined
-        if (id) {
-            for (var i = 0, j = fontsModel.count; i < j; ++i) {
-                if (fontsModel.get(i).value === id) {
-                    comboBox.currentIndex = i
-                    break
-                }
-            }
-        }
-    }
-
-    onCfg_clockFontFamilyChanged: {
-        fixFontFamilyChange(cfg_clockFontFamily, clockFontFamilyComboBox)
-    }
-
-    onCfg_dayFontFamilyChanged: {
-        fixFontFamilyChange(cfg_dayFontFamily, dayFontFamilyComboBox)
-    }
-
-    onCfg_dateFontFamilyChanged: {
-        fixFontFamilyChange(cfg_dateFontFamily, dateFontFamilyComboBox)
-    }
-
     ListModel {
         id: fontsModel
         Component.onCompleted: {
