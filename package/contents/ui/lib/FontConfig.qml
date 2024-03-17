@@ -61,7 +61,7 @@ QtLayouts.RowLayout {
         checkable: true
         checked: boldValue
 
-        onStateChanged: {
+        onToggled: {
             boldValue = checked
         }
     }
@@ -72,8 +72,8 @@ QtLayouts.RowLayout {
         checkable: true
         checked: italicValue
 
-        onStateChanged: {
-            italicvalue = checked
+        onToggled: {
+            italicValue = checked
         }
     }
 
