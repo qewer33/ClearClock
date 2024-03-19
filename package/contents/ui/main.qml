@@ -45,6 +45,8 @@ PlasmoidItem {
     }
 
     fullRepresentation: ColumnLayout {
+        width: childrenRect.width + 20
+        height: childrenRect.height + 20
         anchors.fill: parent
         spacing: -20
 
@@ -68,7 +70,7 @@ PlasmoidItem {
         Item {
             width: Math.max(textMetricsClockLabel.width, textMetricsDayLabel.width)
             height: Math.max(textMetricsClockLabel.height, textMetricsDayLabel.height)
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignHCenter
 
             Text {
                 id: clockLabel
@@ -129,7 +131,7 @@ PlasmoidItem {
         Text {
             id: dateLabel
             visible: plasmoid.configuration.showDateDisplay
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignHCenter
 
             text: Qt.formatDate(currentDateTime, plasmoid.configuration.dateCustomDateFormat)
 
