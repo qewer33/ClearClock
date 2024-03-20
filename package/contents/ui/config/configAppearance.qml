@@ -9,10 +9,12 @@ import QtQuick.Layouts 1.12 as QtLayouts
 import QtQuick.Dialogs
 
 import org.kde.kirigami 2.3 as Kirigami
+import org.kde.kcmutils as KCM
+
 
 import "../lib"
 
-Item {
+KCM.SimpleKCM {
     id: appearancePage
     width: childrenRect.width
     height: childrenRect.height
