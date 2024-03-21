@@ -45,8 +45,6 @@ PlasmoidItem {
     }
 
     fullRepresentation: ColumnLayout {
-        width: childrenRect.width + 20
-        height: childrenRect.height + 20
         anchors.fill: parent
         spacing: -20
 
@@ -68,8 +66,8 @@ PlasmoidItem {
         }
 
         Item {
-            width: Math.max(textMetricsClockLabel.width, textMetricsDayLabel.width)
-            height: Math.max(textMetricsClockLabel.height, textMetricsDayLabel.height)
+            implicitWidth: Math.max(textMetricsClockLabel.width, textMetricsDayLabel.width)
+            implicitHeight: Math.max(textMetricsClockLabel.height, textMetricsDayLabel.height)
             Layout.alignment: Qt.AlignHCenter
 
             Text {
