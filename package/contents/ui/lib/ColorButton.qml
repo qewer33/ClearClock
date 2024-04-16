@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12 as QtLayouts
     SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs
 
 QtControls.Button {
     id: clockFontColorButton
@@ -33,10 +33,12 @@ QtControls.Button {
     ColorDialog {
         id: dialog
         title: "Select Background Color"
-        color: value
-        showAlphaChannel: true
+        selectedColor: value
+        options: {
+            ShowAlphaChannel: true
+        }
         onAccepted: {
-            value = dialog.color
+            value = selectedColor
         }
     }
 }

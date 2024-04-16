@@ -18,6 +18,5 @@
         "Version": "0.3",
         "Website": "https://github.com/qewer33/ClearClock"
     },
-    "X-Plasma-API": "declarativeappletscript",
-    "X-Plasma-MainScript": "ui/main.qml"
+    "X-Plasma-API-Minimum-Version": "6.0"
 }

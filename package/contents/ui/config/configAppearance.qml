@@ -6,13 +6,15 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12 as QtControls
 import QtQuick.Layouts 1.12 as QtLayouts
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs
 
 import org.kde.kirigami 2.3 as Kirigami
+import org.kde.kcmutils as KCM
+
 
 import "../lib"
 
-Item {
+KCM.SimpleKCM {
     id: appearancePage
     width: childrenRect.width
     height: childrenRect.height
@@ -57,31 +59,6 @@ Item {
     property int cfg_dateShadowRadius
     property int cfg_dateShadowXOffset
     property int cfg_dateShadowYOffset
-
-
-    function fixFontFamilyChange(id, comboBox) {
-        // HACK by the time we populate our model and/or the ComboBox is finished the value is still undefined
-        if (id) {
-            for (var i = 0, j = fontsModel.count; i < j; ++i) {
-                if (fontsModel.get(i).value === id) {
-                    comboBox.currentIndex = i
-                    break
-                }
-            }
-        }
-    }
-
-    onCfg_clockFontFamilyChanged: {
-        fixFontFamilyChange(cfg_clockFontFamily, clockFontFamilyComboBox)
-    }
-
-    onCfg_dayFontFamilyChanged: {
-        fixFontFamilyChange(cfg_dayFontFamily, dayFontFamilyComboBox)
-    }
-
-    onCfg_dateFontFamilyChanged: {
-        fixFontFamilyChange(cfg_dateFontFamily, dateFontFamilyComboBox)
-    }
 
     ListModel {
         id: fontsModel
@@ -155,7 +132,7 @@ Item {
                         cfg_clockFontColor = colorValue
                     }
 
-                    fontValue: cgf_clockFontFamily
+                    fontValue: cfg_clockFontFamily
                     onFontValueChanged: {
                         cfg_clockFontFamily = fontValue
                     }
@@ -232,7 +209,7 @@ Item {
                         cfg_dayFontColor = colorValue
                     }
 
-                    fontValue: cgf_dayFontFamily
+                    fontValue: cfg_dayFontFamily
                     onFontValueChanged: {
                         cfg_dayFontFamily = fontValue
                     }
@@ -331,7 +308,7 @@ Item {
                         cfg_dateFontColor = colorValue
                     }
 
-                    fontValue: cgf_dateFontFamily
+                    fontValue: cfg_dateFontFamily
                     onFontValueChanged: {
                         cfg_dateFontFamily = fontValue
                     }
