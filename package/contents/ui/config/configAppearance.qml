@@ -11,10 +11,9 @@ import QtQuick.Dialogs
 import org.kde.kirigami 2.3 as Kirigami
 import org.kde.kcmutils as KCM
 
-
 import "../lib"
 
-KCM.ScrollViewKCM {
+KCM.SimpleKCM {
     id: appearancePage
     width: childrenRect.width
     height: childrenRect.height
@@ -81,288 +80,269 @@ KCM.ScrollViewKCM {
         }
     }
 
-    QtLayouts.ColumnLayout {
+    Kirigami.FormLayout {
         id: layout
         anchors.fill: parent
-        spacing: 30
 
-        QtLayouts.ColumnLayout {
-            QtLayouts.Layout.fillWidth: true
-            spacing: 10
 
-            QtControls.Label {
-                text: i18n("Clock Display Settings")
-                font.bold: true
-                font.pixelSize: 17
-            }
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: "Clock Display Settings"
+        }
 
-            QtControls.CheckBox {
-                id: use24hFormat
-                text: i18n("Use 24-hour clock")
-                tristate: false
-                checked: cfg_clockUse24hFormat
-            }
+        QtControls.CheckBox {
+            Kirigami.FormData.label: "Use 24-hour clock"
+            id: use24hFormat
+            tristate: false
+            checked: cfg_clockUse24hFormat
+        }
 
-            QtControls.CheckBox {
-                id: showSeconds
-                text: i18n("Show seconds")
-                tristate: false
-                checked: cfg_clockShowSeconds
-            }
+        QtControls.CheckBox {
+            Kirigami.FormData.label: "Show seconds"
+            id: showSeconds
+            tristate: false
+            checked: cfg_clockShowSeconds
+        }
 
-            QtLayouts.RowLayout {
-                QtControls.Label {
-                    text: i18n("Separator:")
-                }
+        QtControls.TextField {
+            Kirigami.FormData.label: "Separator"
+            id: clockSeparatorTextField
+            maximumLength: 1
+        }
 
-                QtControls.TextField {
-                    id: clockSeparatorTextField
-                    maximumLength: 1
-                }
-            }
+        ColorButton {
+            Kirigami.FormData.label: "Color"
 
-            FontConfig {
-                fontModel: fontsModel
-
-                colorValue: cfg_clockFontColor
-                onColorValueChanged: {
-                    cfg_clockFontColor = colorValue
-                }
-
-                fontValue: cfg_clockFontFamily
-                onFontValueChanged: {
-                    cfg_clockFontFamily = fontValue
-                }
-
-                boldValue: cfg_clockBoldText
-                onBoldValueChanged: {
-                    cfg_clockBoldText = boldValue
-                }
-
-                italicValue: cfg_clockItalicText
-                onItalicValueChanged: {
-                    cfg_clockItalicText = italicValue
-                }
-
-                pxSizeValue: cfg_clockFontSize
-                onPxSizeValueChanged: {
-                    cfg_clockFontSize = pxSizeValue
-                }
-            }
-
-            QtControls.CheckBox {
-                id: clockShadowCheckBox
-                text: i18n("Enable shadow")
-                tristate: false
-                checked: cfg_clockShadowEnabled
-            }
-
-            ShadowConfig {
-                enabled: clockShadowCheckBox.checked
-
-                colorValue: cfg_clockShadowColor
-                onColorValueChanged: {
-                    cfg_clockShadowColor = colorValue
-                }
-
-                radiusValue: cfg_clockShadowRadius
-                onRadiusValueChanged: {
-                    cfg_clockShadowRadius = radiusValue
-                }
-
-                offsetXValue: cfg_clockShadowXOffset
-                onOffsetXValueChanged: {
-                    cfg_clockShadowXOffset = offsetXValue
-                }
-
-                offsetYValue: cfg_clockShadowYOffset
-                onOffsetYValueChanged: {
-                    cfg_clockShadowYOffset = offsetYValue
-                }
+            onValueChanged: {
+                cfg_clockFontColor = value
             }
         }
 
-        QtLayouts.ColumnLayout {
-            QtLayouts.Layout.fillWidth: true
-            spacing: 10
+        FontConfig {
+            Kirigami.FormData.label: "Font"
+            fontModel: fontsModel
 
-            QtControls.Label {
-                text: i18n("Day Display Settings")
-                font.bold: true
-                font.pixelSize: 17
+            fontValue: cfg_clockFontFamily
+            onFontValueChanged: {
+                cfg_clockFontFamily = fontValue
             }
 
-            QtControls.CheckBox {
-                id: showDayDisplayCheckBox
-                text: i18n("Show day display")
+            boldValue: cfg_clockBoldText
+            onBoldValueChanged: {
+                cfg_clockBoldText = boldValue
             }
 
-            FontConfig {
-                fontModel: fontsModel
-                enabled: showDayDisplayCheckBox.checked
-
-                colorValue: cfg_dayFontColor
-                onColorValueChanged: {
-                    cfg_dayFontColor = colorValue
-                }
-
-                fontValue: cfg_dayFontFamily
-                onFontValueChanged: {
-                    cfg_dayFontFamily = fontValue
-                }
-
-                boldValue: cfg_dayBoldText
-                onBoldValueChanged: {
-                    cfg_dayBoldText = boldValue
-                }
-
-                italicValue: cfg_dayItalicText
-                onItalicValueChanged: {
-                    cfg_dayItalicText = italicValue
-                }
-
-                pxSizeValue: cfg_dayFontSize
-                onPxSizeValueChanged: {
-                    cfg_dayFontSize = pxSizeValue
-                }
+            italicValue: cfg_clockItalicText
+            onItalicValueChanged: {
+                cfg_clockItalicText = italicValue
             }
 
-            QtControls.CheckBox {
-                id: dayShadowCheckBox
-                text: i18n("Enable shadow")
-                tristate: false
-                checked: cfg_dayShadowEnabled
-            }
-
-            ShadowConfig {
-                enabled: dayShadowCheckBox.checked
-
-                colorValue: cfg_dayShadowColor
-                onColorValueChanged: {
-                    cfg_dayShadowColor = colorValue
-                }
-
-                radiusValue: cfg_dayShadowRadius
-                onRadiusValueChanged: {
-                    cfg_dayShadowRadius = radiusValue
-                }
-
-                offsetXValue: cfg_dayShadowXOffset
-                onOffsetXValueChanged: {
-                    cfg_dayShadowXOffset = offsetXValue
-                }
-
-                offsetYValue: cfg_clockShadowYOffset
-                onOffsetYValueChanged: {
-                    cfg_dayShadowYOffset = offsetYValue
-                }
+            pxSizeValue: cfg_clockFontSize
+            onPxSizeValueChanged: {
+                cfg_clockFontSize = pxSizeValue
             }
         }
 
-        QtLayouts.ColumnLayout {
-            QtLayouts.Layout.fillWidth: true
-            spacing: 10
+        QtControls.CheckBox {
+            id: clockShadowCheckBox
+            text: i18n("Enable shadow")
+            tristate: false
+            checked: cfg_clockShadowEnabled
+        }
 
-            QtControls.Label {
-                text: i18n("Date Display Settings")
-                font.bold: true
-                font.pixelSize: 17
+        ShadowConfig {
+            Kirigami.FormData.label: "Shadow"
+            enabled: clockShadowCheckBox.checked
+
+            colorValue: cfg_clockShadowColor
+            onColorValueChanged: {
+                cfg_clockShadowColor = colorValue
             }
 
-            QtControls.CheckBox {
-                id: showDateDisplayCheckBox
-                text: i18n("Show date display")
+            radiusValue: cfg_clockShadowRadius
+            onRadiusValueChanged: {
+                cfg_clockShadowRadius = radiusValue
             }
 
-            QtLayouts.RowLayout {
-                enabled: showDateDisplayCheckBox.checked
-
-                QtControls.Label {
-                    text: i18n("Date format:")
-                    opacity: if (enabled) 1
-                                else 0.4
-                }
-
-                QtLayouts.RowLayout {
-                    QtControls.TextField {
-                        id: customDateFormat
-                        QtLayouts.Layout.fillWidth: true
-                    }
-
-                    QtControls.Button {
-                        icon.name: "exifinfo"
-                        onClicked: Qt.openUrlExternally("https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method")
-                    }
-                }
+            offsetXValue: cfg_clockShadowXOffset
+            onOffsetXValueChanged: {
+                cfg_clockShadowXOffset = offsetXValue
             }
 
-            FontConfig {
-                fontModel: fontsModel
-                enabled: showDateDisplayCheckBox.checked
+            offsetYValue: cfg_clockShadowYOffset
+            onOffsetYValueChanged: {
+                cfg_clockShadowYOffset = offsetYValue
+            }
+        }
 
-                colorValue: cfg_dateFontColor
-                onColorValueChanged: {
-                    cfg_dateFontColor = colorValue
-                }
 
-                fontValue: cfg_dateFontFamily
-                onFontValueChanged: {
-                    cfg_dateFontFamily = fontValue
-                }
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: "Day Display Settings"
+        }
 
-                boldValue: cfg_dateBoldText
-                onBoldValueChanged: {
-                    cfg_dateBoldText = boldValue
-                }
+        QtControls.CheckBox {
+            Kirigami.FormData.label: "Show day display"
+            id: showDayDisplayCheckBox
+        }
 
-                italicValue: cfg_dateItalicText
-                onItalicValueChanged: {
-                    cfg_dateItalicText = italicValue
-                }
+        ColorButton {
+            Kirigami.FormData.label: "Color"
 
-                pxSizeValue: cfg_dateFontSize
-                onPxSizeValueChanged: {
-                    cfg_dateFontSize = pxSizeValue
-                }
+            onValueChanged: {
+                cfg_dayFontColor = value
+            }
+        }
+
+        FontConfig {
+            Kirigami.FormData.label: "Font"
+            fontModel: fontsModel
+            enabled: showDayDisplayCheckBox.checked
+
+            fontValue: cfg_dayFontFamily
+            onFontValueChanged: {
+                cfg_dayFontFamily = fontValue
             }
 
-            QtControls.CheckBox {
-                id: dateShadowCheckBox
-                text: i18n("Enable shadow")
-                tristate: false
-                checked: cfg_dateShadowEnabled
+            boldValue: cfg_dayBoldText
+            onBoldValueChanged: {
+                cfg_dayBoldText = boldValue
             }
 
-            ShadowConfig {
-                enabled: dateShadowCheckBox.checked
+            italicValue: cfg_dayItalicText
+            onItalicValueChanged: {
+                cfg_dayItalicText = italicValue
+            }
 
-                colorValue: cfg_dateShadowColor
-                onColorValueChanged: {
-                    cfg_dateShadowColor = colorValue
-                }
+            pxSizeValue: cfg_dayFontSize
+            onPxSizeValueChanged: {
+                cfg_dayFontSize = pxSizeValue
+            }
+        }
 
-                radiusValue: cfg_dateShadowRadius
-                onRadiusValueChanged: {
-                    cfg_dateShadowRadius = radiusValue
-                }
+        QtControls.CheckBox {
+            id: dayShadowCheckBox
+            text: i18n("Enable shadow")
+            tristate: false
+            checked: cfg_dayShadowEnabled
+        }
 
-                offsetXValue: cfg_dateShadowXOffset
-                onOffsetXValueChanged: {
-                    cfg_dateShadowXOffset = offsetXValue
-                }
+        ShadowConfig {
+            Kirigami.FormData.label: "Shadow"
+            enabled: dayShadowCheckBox.checked
 
-                offsetYValue: cfg_dateShadowYOffset
-                onOffsetYValueChanged: {
-                    cfg_dateShadowYOffset = offsetYValue
-                }
+            colorValue: cfg_dayShadowColor
+            onColorValueChanged: {
+                cfg_dayShadowColor = colorValue
+            }
+
+            radiusValue: cfg_dayShadowRadius
+            onRadiusValueChanged: {
+                cfg_dayShadowRadius = radiusValue
+            }
+
+            offsetXValue: cfg_dayShadowXOffset
+            onOffsetXValueChanged: {
+                cfg_dayShadowXOffset = offsetXValue
+            }
+
+            offsetYValue: cfg_clockShadowYOffset
+            onOffsetYValueChanged: {
+                cfg_dayShadowYOffset = offsetYValue
+            }
+        }
+
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: "Date Display Settings"
+        }
+
+        QtControls.CheckBox {
+            Kirigami.FormData.label: "Show date display"
+            id: showDateDisplayCheckBox
+        }
+
+        QtLayouts.RowLayout {
+            Kirigami.FormData.label: "Date format"
+            enabled: showDateDisplayCheckBox.checked
+
+            QtControls.TextField {
+                id: customDateFormat
+                QtLayouts.Layout.fillWidth: true
+            }
+
+            QtControls.Button {
+                icon.name: "exifinfo"
+                onClicked: Qt.openUrlExternally("https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method")
+            }
+        }
+
+        ColorButton {
+            Kirigami.FormData.label: "Color"
+
+            onValueChanged: {
+                cfg_dateFontColor = value
+            }
+        }
+
+        FontConfig {
+            Kirigami.FormData.label: "Font"
+            fontModel: fontsModel
+            enabled: showDateDisplayCheckBox.checked
+
+            fontValue: cfg_dateFontFamily
+            onFontValueChanged: {
+                cfg_dateFontFamily = fontValue
+            }
+
+            boldValue: cfg_dateBoldText
+            onBoldValueChanged: {
+                cfg_dateBoldText = boldValue
+            }
+
+            italicValue: cfg_dateItalicText
+            onItalicValueChanged: {
+                cfg_dateItalicText = italicValue
+            }
+
+            pxSizeValue: cfg_dateFontSize
+            onPxSizeValueChanged: {
+                cfg_dateFontSize = pxSizeValue
+            }
+        }
+
+        QtControls.CheckBox {
+            id: dateShadowCheckBox
+            text: i18n("Enable shadow")
+            tristate: false
+            checked: cfg_dateShadowEnabled
+        }
+
+        ShadowConfig {
+            Kirigami.FormData.label: "Shadow"
+            enabled: dateShadowCheckBox.checked
+
+            colorValue: cfg_dateShadowColor
+            onColorValueChanged: {
+                cfg_dateShadowColor = colorValue
+            }
+
+            radiusValue: cfg_dateShadowRadius
+            onRadiusValueChanged: {
+                cfg_dateShadowRadius = radiusValue
+            }
+
+            offsetXValue: cfg_dateShadowXOffset
+            onOffsetXValueChanged: {
+                cfg_dateShadowXOffset = offsetXValue
+            }
+
+            offsetYValue: cfg_dateShadowYOffset
+            onOffsetYValueChanged: {
+                cfg_dateShadowYOffset = offsetYValue
             }
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:1}D{i:3}D{i:2}
-}
-##^##*/
 

@@ -16,41 +16,22 @@ QtLayouts.RowLayout {
 
     property var fontModel
 
-    property color colorValue
     property string fontValue
     property bool boldValue
     property bool italicValue
     property int pxSizeValue
 
 
-    QtControls.Label {
-        text: i18n("Font style:")
-        opacity: if (enabled) 1
-                 else 0.4
-    }
-
-    ColorButton {
-        id: fontColorButton
-        value: colorValue
-
-        onValueChanged: {
-            colorValue = value
-        }
-    }
-
     QtControls.ComboBox {
         id: fontFamilyComboBox
-        QtLayouts.Layout.fillWidth: true
-        QtLayouts.Layout.minimumWidth: Kirigami.Units.gridUnit * 10
+        QtLayouts.Layout.maximumWidth: Kirigami.Units.gridUnit * 10
         model: fontModel
         textRole: "text"
         currentIndex: getIdFromModel()
 
-        function getIdFromModel(){
-            for(var i = 0; i < model.count; i++){
-                if(model.get(i).value === fontValue){
-                    return i;
-                }
+        function getIdFromModel() {
+            for (var i = 0; i < model.count; i++) {
+                if (model.get(i).value === fontValue) return i;
             }
             return 0;
         }

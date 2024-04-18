@@ -18,12 +18,6 @@ QtLayouts.RowLayout {
     property int offsetYValue
 
 
-    QtControls.Label {
-        text: i18n("Shadow style:")
-        opacity: if (enabled) 1
-                 else 0.4
-    }
-
     ColorButton {
         id: shadowColorButton
         value: colorValue
@@ -35,8 +29,7 @@ QtLayouts.RowLayout {
 
     QtControls.Label {
         text: i18n("Radius")
-        opacity: if (enabled) 1
-                 else 0.4
+        opacity: enabled ? 1 : 0.4
     }
 
     QtControls.SpinBox {
@@ -52,8 +45,7 @@ QtLayouts.RowLayout {
 
     QtControls.Label {
         text: i18n("Offset")
-        opacity: if (enabled) 1
-                 else 0.4
+        opacity: enabled ? 1 : 0.4
     }
 
     QtControls.SpinBox {
