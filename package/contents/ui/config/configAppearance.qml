@@ -14,7 +14,7 @@ import org.kde.kcmutils as KCM
 
 import "../lib"
 
-KCM.SimpleKCM {
+KCM.ScrollViewKCM {
     id: appearancePage
     width: childrenRect.width
     height: childrenRect.height
@@ -81,283 +81,279 @@ KCM.SimpleKCM {
         }
     }
 
-    QtControls.ScrollView {
-        id: scrollView
+    QtLayouts.ColumnLayout {
+        id: layout
+        anchors.fill: parent
+        spacing: 30
 
         QtLayouts.ColumnLayout {
-            id: layout
-            anchors.fill: parent
-            spacing: 30
+            QtLayouts.Layout.fillWidth: true
+            spacing: 10
 
-            QtLayouts.ColumnLayout {
-                QtLayouts.Layout.fillWidth: true
-                spacing: 10
+            QtControls.Label {
+                text: i18n("Clock Display Settings")
+                font.bold: true
+                font.pixelSize: 17
+            }
+
+            QtControls.CheckBox {
+                id: use24hFormat
+                text: i18n("Use 24-hour clock")
+                tristate: false
+                checked: cfg_clockUse24hFormat
+            }
+
+            QtControls.CheckBox {
+                id: showSeconds
+                text: i18n("Show seconds")
+                tristate: false
+                checked: cfg_clockShowSeconds
+            }
+
+            QtLayouts.RowLayout {
+                QtControls.Label {
+                    text: i18n("Separator:")
+                }
+
+                QtControls.TextField {
+                    id: clockSeparatorTextField
+                    maximumLength: 1
+                }
+            }
+
+            FontConfig {
+                fontModel: fontsModel
+
+                colorValue: cfg_clockFontColor
+                onColorValueChanged: {
+                    cfg_clockFontColor = colorValue
+                }
+
+                fontValue: cfg_clockFontFamily
+                onFontValueChanged: {
+                    cfg_clockFontFamily = fontValue
+                }
+
+                boldValue: cfg_clockBoldText
+                onBoldValueChanged: {
+                    cfg_clockBoldText = boldValue
+                }
+
+                italicValue: cfg_clockItalicText
+                onItalicValueChanged: {
+                    cfg_clockItalicText = italicValue
+                }
+
+                pxSizeValue: cfg_clockFontSize
+                onPxSizeValueChanged: {
+                    cfg_clockFontSize = pxSizeValue
+                }
+            }
+
+            QtControls.CheckBox {
+                id: clockShadowCheckBox
+                text: i18n("Enable shadow")
+                tristate: false
+                checked: cfg_clockShadowEnabled
+            }
+
+            ShadowConfig {
+                enabled: clockShadowCheckBox.checked
+
+                colorValue: cfg_clockShadowColor
+                onColorValueChanged: {
+                    cfg_clockShadowColor = colorValue
+                }
+
+                radiusValue: cfg_clockShadowRadius
+                onRadiusValueChanged: {
+                    cfg_clockShadowRadius = radiusValue
+                }
+
+                offsetXValue: cfg_clockShadowXOffset
+                onOffsetXValueChanged: {
+                    cfg_clockShadowXOffset = offsetXValue
+                }
+
+                offsetYValue: cfg_clockShadowYOffset
+                onOffsetYValueChanged: {
+                    cfg_clockShadowYOffset = offsetYValue
+                }
+            }
+        }
+
+        QtLayouts.ColumnLayout {
+            QtLayouts.Layout.fillWidth: true
+            spacing: 10
+
+            QtControls.Label {
+                text: i18n("Day Display Settings")
+                font.bold: true
+                font.pixelSize: 17
+            }
+
+            QtControls.CheckBox {
+                id: showDayDisplayCheckBox
+                text: i18n("Show day display")
+            }
+
+            FontConfig {
+                fontModel: fontsModel
+                enabled: showDayDisplayCheckBox.checked
+
+                colorValue: cfg_dayFontColor
+                onColorValueChanged: {
+                    cfg_dayFontColor = colorValue
+                }
+
+                fontValue: cfg_dayFontFamily
+                onFontValueChanged: {
+                    cfg_dayFontFamily = fontValue
+                }
+
+                boldValue: cfg_dayBoldText
+                onBoldValueChanged: {
+                    cfg_dayBoldText = boldValue
+                }
+
+                italicValue: cfg_dayItalicText
+                onItalicValueChanged: {
+                    cfg_dayItalicText = italicValue
+                }
+
+                pxSizeValue: cfg_dayFontSize
+                onPxSizeValueChanged: {
+                    cfg_dayFontSize = pxSizeValue
+                }
+            }
+
+            QtControls.CheckBox {
+                id: dayShadowCheckBox
+                text: i18n("Enable shadow")
+                tristate: false
+                checked: cfg_dayShadowEnabled
+            }
+
+            ShadowConfig {
+                enabled: dayShadowCheckBox.checked
+
+                colorValue: cfg_dayShadowColor
+                onColorValueChanged: {
+                    cfg_dayShadowColor = colorValue
+                }
+
+                radiusValue: cfg_dayShadowRadius
+                onRadiusValueChanged: {
+                    cfg_dayShadowRadius = radiusValue
+                }
+
+                offsetXValue: cfg_dayShadowXOffset
+                onOffsetXValueChanged: {
+                    cfg_dayShadowXOffset = offsetXValue
+                }
+
+                offsetYValue: cfg_clockShadowYOffset
+                onOffsetYValueChanged: {
+                    cfg_dayShadowYOffset = offsetYValue
+                }
+            }
+        }
+
+        QtLayouts.ColumnLayout {
+            QtLayouts.Layout.fillWidth: true
+            spacing: 10
+
+            QtControls.Label {
+                text: i18n("Date Display Settings")
+                font.bold: true
+                font.pixelSize: 17
+            }
+
+            QtControls.CheckBox {
+                id: showDateDisplayCheckBox
+                text: i18n("Show date display")
+            }
+
+            QtLayouts.RowLayout {
+                enabled: showDateDisplayCheckBox.checked
 
                 QtControls.Label {
-                    text: i18n("Clock Display Settings")
-                    font.bold: true
-                    font.pixelSize: 17
-                }
-
-                QtControls.CheckBox {
-                    id: use24hFormat
-                    text: i18n("Use 24-hour clock")
-                    tristate: false
-                    checked: cfg_clockUse24hFormat
-                }
-
-                QtControls.CheckBox {
-                    id: showSeconds
-                    text: i18n("Show seconds")
-                    tristate: false
-                    checked: cfg_clockShowSeconds
+                    text: i18n("Date format:")
+                    opacity: if (enabled) 1
+                                else 0.4
                 }
 
                 QtLayouts.RowLayout {
-                    QtControls.Label {
-                        text: i18n("Separator:")
-                    }
-
                     QtControls.TextField {
-                        id: clockSeparatorTextField
-                        maximumLength: 1
-                    }
-                }
-
-                FontConfig {
-                    fontModel: fontsModel
-
-                    colorValue: cfg_clockFontColor
-                    onColorValueChanged: {
-                        cfg_clockFontColor = colorValue
+                        id: customDateFormat
+                        QtLayouts.Layout.fillWidth: true
                     }
 
-                    fontValue: cfg_clockFontFamily
-                    onFontValueChanged: {
-                        cfg_clockFontFamily = fontValue
-                    }
-
-                    boldValue: cfg_clockBoldText
-                    onBoldValueChanged: {
-                        cfg_clockBoldText = boldValue
-                    }
-
-                    italicValue: cfg_clockItalicText
-                    onItalicValueChanged: {
-                        cfg_clockItalicText = italicValue
-                    }
-
-                    pxSizeValue: cfg_clockFontSize
-                    onPxSizeValueChanged: {
-                        cfg_clockFontSize = pxSizeValue
-                    }
-                }
-
-                QtControls.CheckBox {
-                    id: clockShadowCheckBox
-                    text: i18n("Enable shadow")
-                    tristate: false
-                    checked: cfg_clockShadowEnabled
-                }
-
-                ShadowConfig {
-                    enabled: clockShadowCheckBox.checked
-
-                    colorValue: cfg_clockShadowColor
-                    onColorValueChanged: {
-                        cfg_clockShadowColor = colorValue
-                    }
-
-                    radiusValue: cfg_clockShadowRadius
-                    onRadiusValueChanged: {
-                        cfg_clockShadowRadius = radiusValue
-                    }
-
-                    offsetXValue: cfg_clockShadowXOffset
-                    onOffsetXValueChanged: {
-                        cfg_clockShadowXOffset = offsetXValue
-                    }
-
-                    offsetYValue: cfg_clockShadowYOffset
-                    onOffsetYValueChanged: {
-                        cfg_clockShadowYOffset = offsetYValue
+                    QtControls.Button {
+                        icon.name: "exifinfo"
+                        onClicked: Qt.openUrlExternally("https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method")
                     }
                 }
             }
 
-            QtLayouts.ColumnLayout {
-                QtLayouts.Layout.fillWidth: true
-                spacing: 10
+            FontConfig {
+                fontModel: fontsModel
+                enabled: showDateDisplayCheckBox.checked
 
-                QtControls.Label {
-                    text: i18n("Day Display Settings")
-                    font.bold: true
-                    font.pixelSize: 17
+                colorValue: cfg_dateFontColor
+                onColorValueChanged: {
+                    cfg_dateFontColor = colorValue
                 }
 
-                QtControls.CheckBox {
-                    id: showDayDisplayCheckBox
-                    text: i18n("Show day display")
+                fontValue: cfg_dateFontFamily
+                onFontValueChanged: {
+                    cfg_dateFontFamily = fontValue
                 }
 
-                FontConfig {
-                    fontModel: fontsModel
-                    enabled: showDayDisplayCheckBox.checked
-
-                    colorValue: cfg_dayFontColor
-                    onColorValueChanged: {
-                        cfg_dayFontColor = colorValue
-                    }
-
-                    fontValue: cfg_dayFontFamily
-                    onFontValueChanged: {
-                        cfg_dayFontFamily = fontValue
-                    }
-
-                    boldValue: cfg_dayBoldText
-                    onBoldValueChanged: {
-                        cfg_dayBoldText = boldValue
-                    }
-
-                    italicValue: cfg_dayItalicText
-                    onItalicValueChanged: {
-                        cfg_dayItalicText = italicValue
-                    }
-
-                    pxSizeValue: cfg_dayFontSize
-                    onPxSizeValueChanged: {
-                        cfg_dayFontSize = pxSizeValue
-                    }
+                boldValue: cfg_dateBoldText
+                onBoldValueChanged: {
+                    cfg_dateBoldText = boldValue
                 }
 
-                QtControls.CheckBox {
-                    id: dayShadowCheckBox
-                    text: i18n("Enable shadow")
-                    tristate: false
-                    checked: cfg_dayShadowEnabled
+                italicValue: cfg_dateItalicText
+                onItalicValueChanged: {
+                    cfg_dateItalicText = italicValue
                 }
 
-                ShadowConfig {
-                    enabled: dayShadowCheckBox.checked
-
-                    colorValue: cfg_dayShadowColor
-                    onColorValueChanged: {
-                        cfg_dayShadowColor = colorValue
-                    }
-
-                    radiusValue: cfg_dayShadowRadius
-                    onRadiusValueChanged: {
-                        cfg_dayShadowRadius = radiusValue
-                    }
-
-                    offsetXValue: cfg_dayShadowXOffset
-                    onOffsetXValueChanged: {
-                        cfg_dayShadowXOffset = offsetXValue
-                    }
-
-                    offsetYValue: cfg_clockShadowYOffset
-                    onOffsetYValueChanged: {
-                        cfg_dayShadowYOffset = offsetYValue
-                    }
+                pxSizeValue: cfg_dateFontSize
+                onPxSizeValueChanged: {
+                    cfg_dateFontSize = pxSizeValue
                 }
             }
 
-            QtLayouts.ColumnLayout {
-                QtLayouts.Layout.fillWidth: true
-                spacing: 10
+            QtControls.CheckBox {
+                id: dateShadowCheckBox
+                text: i18n("Enable shadow")
+                tristate: false
+                checked: cfg_dateShadowEnabled
+            }
 
-                QtControls.Label {
-                    text: i18n("Date Display Settings")
-                    font.bold: true
-                    font.pixelSize: 17
+            ShadowConfig {
+                enabled: dateShadowCheckBox.checked
+
+                colorValue: cfg_dateShadowColor
+                onColorValueChanged: {
+                    cfg_dateShadowColor = colorValue
                 }
 
-                QtControls.CheckBox {
-                    id: showDateDisplayCheckBox
-                    text: i18n("Show date display")
+                radiusValue: cfg_dateShadowRadius
+                onRadiusValueChanged: {
+                    cfg_dateShadowRadius = radiusValue
                 }
 
-                QtLayouts.RowLayout {
-                    enabled: showDateDisplayCheckBox.checked
-
-                    QtControls.Label {
-                        text: i18n("Date format:")
-                        opacity: if (enabled) 1
-                                 else 0.4
-                    }
-
-                    QtLayouts.RowLayout {
-                        QtControls.TextField {
-                            id: customDateFormat
-                            QtLayouts.Layout.fillWidth: true
-                        }
-
-                        QtControls.Button {
-                            icon.name: "exifinfo"
-                            onClicked: Qt.openUrlExternally("https://doc.qt.io/qt-5/qml-qtqml-qt.html#formatDateTime-method")
-                        }
-                    }
+                offsetXValue: cfg_dateShadowXOffset
+                onOffsetXValueChanged: {
+                    cfg_dateShadowXOffset = offsetXValue
                 }
 
-                FontConfig {
-                    fontModel: fontsModel
-                    enabled: showDateDisplayCheckBox.checked
-
-                    colorValue: cfg_dateFontColor
-                    onColorValueChanged: {
-                        cfg_dateFontColor = colorValue
-                    }
-
-                    fontValue: cfg_dateFontFamily
-                    onFontValueChanged: {
-                        cfg_dateFontFamily = fontValue
-                    }
-
-                    boldValue: cfg_dateBoldText
-                    onBoldValueChanged: {
-                        cfg_dateBoldText = boldValue
-                    }
-
-                    italicValue: cfg_dateItalicText
-                    onItalicValueChanged: {
-                        cfg_dateItalicText = italicValue
-                    }
-
-                    pxSizeValue: cfg_dateFontSize
-                    onPxSizeValueChanged: {
-                        cfg_dateFontSize = pxSizeValue
-                    }
-                }
-
-                QtControls.CheckBox {
-                    id: dateShadowCheckBox
-                    text: i18n("Enable shadow")
-                    tristate: false
-                    checked: cfg_dateShadowEnabled
-                }
-
-                ShadowConfig {
-                    enabled: dateShadowCheckBox.checked
-
-                    colorValue: cfg_dateShadowColor
-                    onColorValueChanged: {
-                        cfg_dateShadowColor = colorValue
-                    }
-
-                    radiusValue: cfg_dateShadowRadius
-                    onRadiusValueChanged: {
-                        cfg_dateShadowRadius = radiusValue
-                    }
-
-                    offsetXValue: cfg_dateShadowXOffset
-                    onOffsetXValueChanged: {
-                        cfg_dateShadowXOffset = offsetXValue
-                    }
-
-                    offsetYValue: cfg_dateShadowYOffset
-                    onOffsetYValueChanged: {
-                        cfg_dateShadowYOffset = offsetYValue
-                    }
+                offsetYValue: cfg_dateShadowYOffset
+                onOffsetYValueChanged: {
+                    cfg_dateShadowYOffset = offsetYValue
                 }
             }
         }
