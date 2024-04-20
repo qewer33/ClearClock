@@ -3,7 +3,7 @@
 # 🕒 Clear Clock
 A simple but configurable KDE plasmoid/widget for displaying date and time.
 
-[KDE Store link](https://store.kde.org/p/2147871/)
+[KDE Store **Plasma 5**](https://store.kde.org/p/1666554/) | [KDE Store **Plasma 6**](https://store.kde.org/p/2147871/)
 
 If you like this Plasma widget and want to support me, consider getting me a coffee! :D
 
